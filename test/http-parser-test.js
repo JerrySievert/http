@@ -56,5 +56,32 @@ vows.describe("parser test").addBatch({
     'the type should still be parser': function (topic) {
       assert.equal(topic.type, 'GET');
     }
+  },
+  'when passed a header with a bad request type': {
+    topic: function () {
+      return parse("GRR /index.html HTTP/1.1\r\nHeader1: foo\r\nHeader2: bar\r\n\r\n");
+    },
+    'unknown request type is returned': function (topic) {
+      assert.equal(topic.status, 'unknown request type');
+    },
+    'the type is returned': function (topic) {
+      assert.equal(topic.type, 'GRR');
+    }
+  },
+  'when passed a header without an http version': {
+    topic: function () {
+      return parse("GET /index.html\r\nHeader1: foo\r\nHeader2: bar\r\n\r\n");
+    },
+    'the version is returned as 1.1': function (topic) {
+      assert.equal(topic.version, '1.1');
+    }
+  },
+  'when passed a header with a broken http version': {
+    topic: function () {
+      return parse("GET /index.html http\r\nHeader1: foo\r\nHeader2: bar\r\n\r\n");
+    },
+    'the version is returned as 1.1': function (topic) {
+      assert.equal(topic.version, '1.1');
+    }
   }
 }).export(module);
