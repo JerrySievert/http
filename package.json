@@ -1,0 +1,27 @@
+{
+  "name": "http-exp",
+  "version": "0.0.1",
+  "description": "Experimental implementation of the http server in pure Javascript",
+  "main": "lib/http.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "vows --spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/JerrySievert/http.git"
+  },
+  "keywords": [
+    "http"
+  ],
+  "author": "Jerry Sievert",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/JerrySievert/http/issues"
+  },
+  "devDependencies": {
+    "vows": "~0.7.0"
+  }
+}
