@@ -20,6 +20,9 @@ vows.describe("parser test").addBatch({
     },
     'url should be correct': function (topic) {
       assert.equal(topic.url, '/index.html');
+    },
+    'the fragment should be undefined': function (topic) {
+      assert.equal(topic.fragment, undefined);
     }
   },
   'when passed a full http request': {
